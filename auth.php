@@ -15,11 +15,8 @@ if($result) {
 	setcookie('user', $user['name'], time() + 3600, "/");
     $mysql->close();
     header('Location: page.html');
-}
-else {
+} else {
 	echo "Логин или пароль введены неверно";
 	exit();
 }
-
-
 ?>
