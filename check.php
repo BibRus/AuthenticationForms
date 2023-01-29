@@ -7,7 +7,7 @@ if(mb_strlen($login) < 5 || mb_strlen($login) > 90){
 	echo "Недопустимая длина логина";
 	exit();
 }
-else if(mb_strlen($name) < 5){
+else if(mb_strlen($name) < 5) {
 	echo "Недопустимая длина имени";
 	exit();
 }
@@ -23,6 +23,10 @@ if(!empty($user1)){
 	echo "Данный логин уже используется!";
 	exit();
 }
+
+$mysql->query("INSERT INTO `users` (`login`, `pass`, `name`)
+	VALUES('$login', '$pass', '$name')");
+$mysql->close();
 
 header('Location: /');
 exit();
