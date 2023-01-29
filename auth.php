@@ -10,18 +10,16 @@ $mysql = new mysqli('localhost', 'root', '', 'register-bd');
 $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' AND `pass` = '$pass'");
 $user = $result->fetch_assoc(); 
 
-if(count((array)$user) == 0) {
+if($result) {
 	echo "Такой пользователь не найден";
+	setcookie('user', $user['name'], time() + 3600, "/");
+    $mysql->close();
+    header('Location: page.html');
+}
+else {
+	echo "Логин или пароль введены неверно";
 	exit();
 }
-else if(count($user) == 1){
-	echo "Логин или праоль введены неверно";
-	exit();
-}
 
-setcookie('user', $user['name'], time() + 3600, "/");
 
-$mysql->close();
-
-header('Location: page.html');
 ?>
