@@ -2,16 +2,15 @@
 $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
 $pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
 
-$pass = md5($pass."forhktkntuhpi"); 
+$pass = md5($pass."thisisforhabr"); 
 
 $mysql = new mysqli('localhost', 'root', '', 'register-bd');
 
 
 $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' AND `pass` = '$pass'");
-$user = $result->fetch_assoc(); 
+$user = $result->fetch_assoc();
 
-if($result) {
-	echo "Такой пользователь не найден";
+if($user) {
 	setcookie('user', $user['name'], time() + 3600, "/");
     $mysql->close();
     header('Location: page.html');
