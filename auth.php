@@ -10,7 +10,7 @@ $mysql = new mysqli('localhost', 'root', '', 'register-bd');
 $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' AND `pass` = '$pass'");
 $user = $result->fetch_assoc(); 
 
-if(count($user) == 0) {
+if(count((array)$user) == 0) {
 	echo "Такой пользователь не найден";
 	exit();
 }
