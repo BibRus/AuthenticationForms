@@ -26,7 +26,6 @@
 					<button class="btn btn-success">Авторизоваться</button><br>
 				</form> 
 			</div>
-
 		</div>
 	</div>
 </body>
